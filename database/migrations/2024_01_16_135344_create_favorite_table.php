@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('komentar', function (Blueprint $table) {
-            $table->id('id_komentar');
+        Schema::create('favorites', function (Blueprint $table) {
+            $table->id('id_favorite');
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_buku');
-            $table->string('komentar');
-            $table->dateTime('tgl_komentar');
-            $table->integer('parent_id');
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
+            $table->foreign('id_buku')->references('id_buku')->on('books')->onDelete('cascade');    
+
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('komentar');
+        Schema::dropIfExists('favorite');
     }
 };

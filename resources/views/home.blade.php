@@ -7,6 +7,12 @@
     <title>E-Litera | Home</title>
 </head>
 <body>
+
+    {{$user->id_user}}
+    {{$user->username}}
+    <a href="{{ route('about-user.profile', ['id' => Auth::id()]) }}">Profile user</a> <br>
+    <a href="{{ route ('contactPage')}}">open contact</a>
+
     <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit">Logout</button> 

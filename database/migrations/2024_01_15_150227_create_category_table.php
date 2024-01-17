@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('denda', function (Blueprint $table) {
-            $table->id('id_denda');
-            $table->unsignedBigInteger('id_buku');
-            $table->unsignedBigInteger('id_user');
-            $table->integer('keterlambatan');
-            $table->unsignedBigInteger('tarif_pembayaran');
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id('id_category');
+            $table->string('name_category');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('denda');
+        Schema::dropIfExists('category');
     }
 };

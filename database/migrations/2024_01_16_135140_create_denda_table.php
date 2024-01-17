@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
-            $table->id('id_contact');
+        Schema::create('dendas', function (Blueprint $table) {
+            $table->id('id_denda');
+            $table->unsignedBigInteger('id_buku');
             $table->unsignedBigInteger('id_user');
-            $table->string('deskripsi');
+            $table->integer('keterlambatan');
+            $table->unsignedBigInteger('tarif_pembayaran');
             $table->timestamps();
 
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-
+            $table->foreign('id_buku')->references('id_buku')->on('books')->onDelete('cascade');    
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contact');
+        Schema::dropIfExists('denda');
     }
 };

@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('relasi_kategori', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_kategori');
+        Schema::create('ratings', function (Blueprint $table) {
+            $table->id('id_rating');
+            $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_buku');
+            $table->integer('rating');
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
+            $table->foreign('id_buku')->references('id_buku')->on('books')->onDelete('cascade');  
+
         });
     }
 
@@ -23,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('relasi_kategori');
+        Schema::dropIfExists('rating');
     }
 };
